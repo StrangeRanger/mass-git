@@ -1,8 +1,4 @@
 #!/bin/bash
-#
-# Fetch or pull one or more git repositories at a specified location on your
-# system.
-#
 ################################################################################
 #### [ Variables ]
 
@@ -13,8 +9,8 @@ red=$'\033[1;31m'
 nc=$'\033[0m'
 
 version="v1.0.0"        # Program version.
-root_dir="$PWD"         # Directory script was executed from.
-maxdepth="-maxdepth 2"  # Peform recursive search.
+root_dir="$PWD"         # Directory the program was executed from.
+maxdepth="-maxdepth 2"  # Peform recursive searches with a maximum depth of 2.
 provided_path=false     # Validates that a path was provided.
 git_repos=()            # List of paths to existing repositories on the system.
 
@@ -90,6 +86,7 @@ if [[ $provided_path = true ]]; then
     fi
 else
     echo "${red}Invalid input:$nc Missing required argument '-p <path>'"
+    exit 1
 fi
 
 
