@@ -98,7 +98,6 @@ fi
 # Store the location of all local repositories found.
 while read -r -d $'\0'; do
     git_repos+=(${REPLY/%.git/})
-    sleep 1
 done < <(find "$path" $maxdepth -type d -name ".git" -prune -print0)
 
 # If no local repositories were found.
