@@ -1,5 +1,5 @@
 #!/bin/bash
-################################################################################
+########################################################################################
 #### [ Variables ]
 
 
@@ -8,15 +8,15 @@ blue=$'\033[0;34m'
 red=$'\033[1;31m'
 nc=$'\033[0m'
 
-version="v1.0.0-beta"   # Program version.
-root_dir="$PWD"         # Directory the program was executed from.
-maxdepth="-maxdepth 2"  # Peform recursive searches with a maximum depth of 2.
-provided_path=false     # Validates that a path was provided.
-git_repos=()            # List of paths to existing repositories on the system.
+version="v1.0.0-alpha.1"  # Program version.
+root_dir="$PWD"           # Directory the program was executed from.
+maxdepth="-maxdepth 2"    # Peform recursive searches with a maximum depth of 2.
+provided_path=false       # Validates that a path was provided.
+git_repos=()              # List of paths to existing repositories on the system.
 
 
 #### End of [ Variables ]
-################################################################################
+########################################################################################
 #### [ Functions ]
 
 
@@ -34,7 +34,7 @@ usage() {
 
 
 #### End of [ Functions ]
-################################################################################
+########################################################################################
 #### [ Options ]
 
 
@@ -69,16 +69,15 @@ while [[ ! -z $1 ]]; do
             exit 1
             ;;
     esac
-
     shift
 done
 
-# Checks if provided path is a valid directory.
+## Check if the provided path is a valid directory.
 if [[ $provided_path = true ]]; then
     if [[ ! -d $path ]]; then
         if [[ -f $path ]]; then
-            echo "${red}Invalid input:$nc File was provided when a directory" \
-                "was expected" >&2
+            echo "${red}Invalid input:$nc File was provided when a directory was" \
+                "expected" >&2
         else
             echo "${red}Invalid input:$nc Directory does not exist" >&2
         fi
@@ -91,11 +90,11 @@ fi
 
 
 #### End of [ Options ]
-################################################################################
+########################################################################################
 #### [ Main ]
 
 
-# Store the location of all local repositories found.
+## Store the location of all local repositories found.
 while read -r -d $'\0'; do
     git_repos+=(${REPLY/%.git/})
 done < <(find "$path" $maxdepth -type d -name ".git" -prune -print0)
@@ -122,4 +121,4 @@ echo "${green}==>$nc Done"
 
 
 #### End of [ Main ]
-################################################################################
+########################################################################################
