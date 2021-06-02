@@ -8,8 +8,7 @@ blue=$'\033[0;34m'
 red=$'\033[1;31m'
 nc=$'\033[0m'
 
-version="v1.0.0-alpha.1"  # Program version.
-root_dir="$PWD"           # Directory the program was executed from.
+version="v1.0.0-beta.1"   # Program version.
 maxdepth="-maxdepth 2"    # Peform recursive searches with a maximum depth of 2.
 provided_path=false       # Validates that a path was provided.
 git_repos=()              # List of paths to existing repositories on the system.
@@ -21,9 +20,9 @@ git_repos=()              # List of paths to existing repositories on the system
 
 
 usage() {
-    echo "Usage: ./$(basename $0) [-r] -p <path>"
-    echo "       ./$(basename $0) -h"
-    echo "       ./$(basename $0) -v"
+    echo "Usage: ./$(basename "$0") [-r] -p <path>"
+    echo "       ./$(basename "$0") -h"
+    echo "       ./$(basename "$0") -v"
     echo ""
     echo "Options:"
     echo "  -h, --help       : Displays this help message."
@@ -51,12 +50,29 @@ while [[ ! -z $1 ]]; do
             ;;
         "-p"|"--path")
             shift
-            path="$1"
+            if hash realpath; then
+                path="$(realpath "$1")"
+            else
+                ####
+                # EXPLANATION:
+                #   1. Gets the relative path as argument `"$1"`
+                #   2. Gets the dirname part of that path: `dirname "$1"`
+                #   3. `cd "$(dirname "$1")` into the relative dir and get the absolute
+                #      path for it by running `pwd`
+                #   4. Append the basename to the absolute path: `$(basename "$1")`
+                #
+                # This solution was found at the following link:
+                # https://stackoverflow.com/questions/4175264/how-to-retrieve-absolute-path-given-relative/31605674#31605674
+                #
+                # '|| exit' makes sure that if the script is unable to change
+                # directories, the script is exitted.
+                ####
+                path="$(cd "$(dirname "$1")" || exit; pwd)/$(basename "$1")"
+            fi
             provided_path=true
             ;;
         "-r"|"--recursive")
-            # Remove the maxium depth of recursion.
-            unset maxdepth
+            unset maxdepth  # Remove the maxium depth of recursion.
             ;;
         "-v"|"--version")
             echo "Mass Git $version"
@@ -95,19 +111,20 @@ fi
 
 
 ## Store the location of all local repositories found.
+## NOTE: $maxdepth is purposefully unquoted. Do not quote it!
 while read -r -d $'\0'; do
-    git_repos+=(${REPLY/%.git/})
+    git_repos+=("${REPLY/%.git/}")
 done < <(find "$path" $maxdepth -type d -name ".git" -prune -print0)
 
-# If no local repositories were found.
+# If no local repositories were found...
 if [[ -z $git_repos ]]; then
     echo "${red}ERROR:$nc No git initialized directory could be found"
     exit 1
 fi
 
 for repo_path in "${git_repos[@]}"; do
-    echo "${blue}==>$nc Changing directories to '$root_dir/$repo_path'..."
-    cd "$root_dir"/"$repo_path" || {
+    echo "${blue}==>$nc Changing directories to '$repo_path'..."
+    cd "$repo_path" || {
         echo "${red}ERROR:$nc Failed to change directories"
         exit 1
     }
