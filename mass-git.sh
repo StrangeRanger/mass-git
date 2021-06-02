@@ -26,8 +26,8 @@ usage() {
     echo ""
     echo "Options:"
     echo "  -h, --help       : Displays this help message."
-    echo "  -p, --path       : Path to perfrom mass git pull/fetch on."
-    echo "  -r, --recursive  : Recursivly run the program."
+    echo "  -p, --path       : Path to perform mass git pull/fetch on."
+    echo "  -r, --recursive  : Recursively run the program."
     echo "  -v, --version    : Display program version number."
 }
 
