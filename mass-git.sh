@@ -8,10 +8,10 @@ blue=$'\033[0;34m'
 red=$'\033[1;31m'
 nc=$'\033[0m'
 
-version="v1.0.0-beta.1"   # Program version.
-maxdepth="-maxdepth 2"    # Peform recursive searches with a maximum depth of 2.
-provided_path=false       # Validates that a path was provided.
-git_repos=()              # List of paths to existing repositories on the system.
+version="v1.0.0"        # Program version.
+maxdepth="-maxdepth 2"  # Peform recursive searches with a maximum depth of 2.
+provided_path=false     # Validates that a path was provided.
+git_repos=()            # List of paths to existing repositories on the system.
 
 
 #### End of [ Variables ]
@@ -20,6 +20,8 @@ git_repos=()              # List of paths to existing repositories on the system
 
 
 usage() {
+    echo "Fetch or pull one or more git repositories at a specified location on your system."
+    echo ""
     echo "Usage: ./$(basename "$0") [-r] -p <path>"
     echo "       ./$(basename "$0") -h"
     echo "       ./$(basename "$0") -v"
@@ -27,7 +29,7 @@ usage() {
     echo "Options:"
     echo "  -h, --help       : Displays this help message."
     echo "  -p, --path       : Path to perform mass git pull/fetch on."
-    echo "  -r, --recursive  : Recursively run the program."
+    echo "  -r, --recursive  : Recursively locate git repositories."
     echo "  -v, --version    : Display program version number."
 }
 
@@ -37,12 +39,14 @@ usage() {
 #### [ Options ]
 
 
+# If no arguments are provided...
 if [[ $# -eq 0 ]]; then
     usage
     exit 0
 fi
 
-while [[ ! -z $1 ]]; do
+# While there are still arguments to traverse...
+while [[ -n $1 ]]; do
     case "$1" in
         "-h"|"--help")
             usage
@@ -50,8 +54,7 @@ while [[ ! -z $1 ]]; do
             ;;
         "-p"|"--path")
             shift
-            if hash realpath; then
-                path="$(realpath "$1")"
+            if hash realpath; then path="$(realpath "$1")"
             else
                 ####
                 # EXPLANATION:
@@ -80,8 +83,6 @@ while [[ ! -z $1 ]]; do
             ;;
         *)
             echo "${red}Invalid option:$nc $1" >&2
-            echo ""
-            usage
             exit 1
             ;;
     esac
@@ -117,6 +118,9 @@ while read -r -d $'\0'; do
 done < <(find "$path" $maxdepth -type d -name ".git" -prune -print0)
 
 # If no local repositories were found...
+# NOTE: Leave $git_repos as is. It's fine that only the first index of the array is
+#       provided, as all we are trying to do is confirm whether or not a git initialized
+#       directory was located.
 if [[ -z $git_repos ]]; then
     echo "${red}ERROR:$nc No git initialized directory could be found"
     exit 1
