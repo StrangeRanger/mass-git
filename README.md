@@ -24,11 +24,11 @@ Usage: ./mass-git.sh [-r] -p <path>
 Options:
   -h, --help       : Displays this help message.
   -p, --path       : Path to perform mass git pull/fetch on.
-  -r, --recursive  : Recursively run the program.
+  -r, --recursive  : Recursively locate git repositories.
   -v, --version    : Display program version number.
 ```
 
-Here is some example output:
+Here is an example output:
 
 ```txt
 ❯ ./mass-git.sh -r -p ~/Programs/tmp
@@ -66,6 +66,6 @@ Already up to date.
 ==> Done
 ```
 
-## Tested On
+## Supported Operating Systems
 
-...
+This program should work on all unix and unix-like operating systems that have bash installed.
