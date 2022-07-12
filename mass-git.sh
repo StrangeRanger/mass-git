@@ -88,7 +88,7 @@ while [[ -n $1 ]]; do
             exit 0
             ;;
         *)
-            echo "${red}Invalid option:$nc $1" >&2
+            echo "${red}Invalid option:${nc} $1" >&2
             exit 1
             ;;
     esac
@@ -99,15 +99,15 @@ done
 if "$provided_path"; then
     if [[ ! -d $path ]]; then
         if [[ -f $path ]]; then
-            echo "${red}Invalid input:$nc File was provided when a directory was" \
+            echo "${red}Invalid input:${nc} File was provided when a directory was" \
                 "expected" >&2
         else
-            echo "${red}Invalid input:$nc Directory does not exist" >&2
+            echo "${red}Invalid input:${nc} Directory does not exist" >&2
         fi
         exit 1
     fi
 else
-    echo "${red}Invalid input:$nc Missing required argument '-p <path>'"
+    echo "${red}Invalid input:${nc} Missing required argument '-p <path>'"
     exit 1
 fi
 
@@ -130,28 +130,28 @@ done < <(find "$path" $maxdepth -type d -name ".git" -prune -print0)
 #       directory was located.
 # shellcheck disable=SC2128
 if [[ -z $git_repos ]]; then
-    echo "${red}ERROR:$nc No git initialized directory could be found"
+    echo "${red}ERROR:${nc} No git initialized directory could be found"
     exit 1
 fi
 
 for repo_path in "${git_repos[@]}"; do
-    echo "${blue}==>$nc Changing directories to '$repo_path'..."
+    echo "${blue}==>${nc} Changing directories to '$repo_path'..."
     cd "$repo_path" || {
-        echo "${red}ERROR:$nc Failed to change directories"
+        echo "${red}ERROR:${nc} Failed to change directories"
         exit 1
     }
     repo_name="$(git config --get remote.origin.url)"
 
     if "$fetch"; then
         echo "${blue}==>${nc} Fetching changes from '$repo_name'..."
-        git fetch || echo "${red}ERROR:$nc Failed to fetch changes from '$repo_name'"
+        git fetch || echo "${red}ERROR:${nc} Failed to fetch changes from '$repo_name'"
     else
         echo "${blue}==>${nc} Pulling changes from '$repo_name'..."
-        git pull || echo "${red}ERROR:$nc Failed to pull changes from '$repo_name'"
+        git pull || echo "${red}ERROR:${nc} Failed to pull changes from '$repo_name'"
     fi
 done
 
-echo "${green}==>$nc Done"
+echo "${green}==>${nc} Done"
 
 
 #### End of [ Main ]
