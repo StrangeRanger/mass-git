@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.1.0 - 2022-07-14
+
+### Added
+
+- Can optionially fetch updates from git repositories, instead of pulling them.
+
+### Changed
+
+- Replace commands with Parameter Expansion where possible.
+- Changed how the variables used to change the color of output text, are formatted, in the hopes of increasing portability.
+- Refactored if statements to be more simplistic.
+
 ## v1.0.0 - 2021-07-23
 
 - Initial release.
