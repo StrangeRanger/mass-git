@@ -1,4 +1,7 @@
 #!/bin/bash
+#
+# Fetch or pull one or more git repositories at a specified location on your system.
+#
 ########################################################################################
 #### [ Variables ]
 
@@ -57,7 +60,8 @@ while [[ -n $1 ]]; do
         "-p"|"--path")
             shift
 
-            if hash realpath; then path="$(realpath "$1")"
+            if hash realpath; then
+                path="$(realpath "$1")"
             else
                 ####
                 # EXPLANATION:
