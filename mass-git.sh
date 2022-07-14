@@ -2,6 +2,9 @@
 #
 # Fetch or pull one or more git repositories at a specified location on your system.
 #
+# License: MIT License
+#          Copyright (c) 2021-2022 Hunter T. (StrangeRanger)
+#
 ########################################################################################
 #### [ Variables ]
 
