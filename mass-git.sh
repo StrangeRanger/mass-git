@@ -11,11 +11,13 @@
 
 green="$(printf '\033[0;32m')"
 blue="$(printf '\033[0;34m')"
+cyan="$(printf '\033[0;36m')"
 red="$(printf '\033[1;31m')"
 nc="$(printf '\033[0m')"
 
 version="v1.2.0"        # Program version.
 maxdepth="-maxdepth 2"  # Peform recursive searches with a maximum depth of 2.
+fetch=false             # Dictates if git fetches or pulls from git repository.
 provided_path=false     # Validates that a path was provided.
 git_repos=()            # List of paths to existing repositories on the system.
 git_action="pull"
@@ -146,6 +148,8 @@ if [[ -z $git_repos ]]; then
     echo "${red}ERROR:${nc} No git initialized directory could be found"
     exit 1
 fi
+
+[[ $dry_run = "--dry-run"  ]] && echo "${cyan}==>${nc} Performing a dry-run..."
 
 for repo_path in "${git_repos[@]}"; do
     echo "${blue}==>${nc} Changing directories to '$repo_path'..."
