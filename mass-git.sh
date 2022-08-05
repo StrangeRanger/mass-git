@@ -87,15 +87,15 @@ while [[ -n $1 ]]; do
             fi
             provided_path=true
             ;;
+        "-r"|"--recursive")                                                              
+            unset maxdepth  # Remove the maxium depth of recursion.                      
+            ;; 
         "-f"|"--fetch")
             git_action="fetch"                                                                        
             git_action_prog="Fetching"
             ;;
         "-d"|"--dry-run")
             dry_run="--dry-run"
-            ;;
-        "-r"|"--recursive")
-            unset maxdepth  # Remove the maxium depth of recursion.
             ;;
         "-v"|"--version")
             echo "Mass Git $version"
