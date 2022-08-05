@@ -148,7 +148,7 @@ if [[ -z $git_repos ]]; then
     exit 1
 fi
 
-[[ $dry_run = "--dry-run"  ]] && echo "${cyan}==>${nc} Performing a dry-run..."
+[[ $dry_run = "--dry-run" ]] && echo "${cyan}==>${nc} Performing a dry-run..."
 
 for repo_path in "${git_repos[@]}"; do
     echo "${blue}==>${nc} Changing directories to '$repo_path'..."
