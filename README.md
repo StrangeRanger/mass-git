@@ -17,16 +17,17 @@ All you need to do is download the repository. There are no binaries or anything
 
 ## Usage
 
-```bash
-Usage: ./mass-git.sh [-r] [-f] -p <path>
-       ./mass-git.sh -h
-       ./mass-git.sh -v
+```man
+Usage: ./mass-git [-r] [-f] [-d] -p <path>
+       ./mass-git -h
+       ./mass-git -v
 
 Options:
   -h, --help       : Displays this help message.
   -p, --path       : Path to perform mass git pull/fetch on.
   -r, --recursive  : Recursively locate git repositories.
   -f, --fetch      : Fetch instead of pull from git repository.
+  -d, --dry-run    : Show what would be done, without making any changes.
   -v, --version    : Display program version number.
 ```
 
