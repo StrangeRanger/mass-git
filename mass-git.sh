@@ -14,11 +14,12 @@ blue="$(printf '\033[0;34m')"
 red="$(printf '\033[1;31m')"
 nc="$(printf '\033[0m')"
 
-version="v1.1.0"        # Program version.
+version="v1.2.0"        # Program version.
 maxdepth="-maxdepth 2"  # Peform recursive searches with a maximum depth of 2.
-fetch=false             # Dictates if git fetches or pulls from git repository.
 provided_path=false     # Validates that a path was provided.
 git_repos=()            # List of paths to existing repositories on the system.
+git_action="pull"
+git_action_prog="Pulling"
 
 
 #### End of [ Variables ]
@@ -29,7 +30,7 @@ git_repos=()            # List of paths to existing repositories on the system.
 usage() {
     echo "Fetch or pull one or more git repositories at a specified location on your system."
     echo ""
-    echo "Usage: ./${0##*/} [-r] [-f] -p <path>"
+    echo "Usage: ./${0##*/} [-r] [-f] [-d] -p <path>"
     echo "       ./${0##*/} -h"
     echo "       ./${0##*/} -v"
     echo ""
@@ -38,6 +39,7 @@ usage() {
     echo "  -p, --path       : Path to perform mass git pull/fetch on."
     echo "  -r, --recursive  : Recursively locate git repositories."
     echo "  -f, --fetch      : Fetch instead of pull from git repository."
+    echo "  -d, --dry-run    : Show what would be done, without making any changes."
     echo "  -v, --version    : Display program version number."
 }
 
@@ -85,7 +87,11 @@ while [[ -n $1 ]]; do
             provided_path=true
             ;;
         "-f"|"--fetch")
-            fetch=true
+            git_action="fetch"                                                                        
+            git_action_prog="Fetching"
+            ;;
+        "-d"|"--dry-run")
+            dry_run="--dry-run"
             ;;
         "-r"|"--recursive")
             unset maxdepth  # Remove the maxium depth of recursion.
@@ -149,13 +155,11 @@ for repo_path in "${git_repos[@]}"; do
     }
     repo_name="$(git config --get remote.origin.url)"
 
-    if "$fetch"; then
-        echo "${blue}==>${nc} Fetching changes from '$repo_name'..."
-        git fetch || echo "${red}ERROR:${nc} Failed to fetch changes from '$repo_name'"
-    else
-        echo "${blue}==>${nc} Pulling changes from '$repo_name'..."
-        git pull || echo "${red}ERROR:${nc} Failed to pull changes from '$repo_name'"
-    fi
+    echo "${blue}==>${nc} $git_action_prog changes from '$repo_name'..."
+    ## NOTE: $dry_run is purposefully unquoted. Do not quote it!                             
+    # shellcheck disable=SC2086
+    git "$git_action" $dry_run \
+        || echo "${red}ERROR:${nc} Failed to $git_action changes from '$repo_name'" 
 done
 
 echo "${green}==>${nc} Done"
