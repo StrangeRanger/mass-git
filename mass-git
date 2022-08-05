@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Fetch or pull one or more git repositories at a specified location on your system.
 #
