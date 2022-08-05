@@ -17,7 +17,6 @@ nc="$(printf '\033[0m')"
 
 version="v1.2.0"        # Program version.
 maxdepth="-maxdepth 2"  # Peform recursive searches with a maximum depth of 2.
-fetch=false             # Dictates if git fetches or pulls from git repository.
 provided_path=false     # Validates that a path was provided.
 git_repos=()            # List of paths to existing repositories on the system.
 git_action="pull"
