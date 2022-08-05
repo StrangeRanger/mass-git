@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [v1.2.0] - 2022-08-05
+
+### Added
+
+- Can perform a dry-run using `-d` or `--dry-run`.
+
+### Changed
+
+- Slight refactoring to reduce semi-duplicate code.
+
 ## [v1.1.0] - 2022-07-14
 
 ### Added
@@ -14,7 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
-- Replace commands with Parameter Expansion where possible.
+- Replaced commands with Parameter Expansion where possible.
 - Changed how the variables used to change the color of output text, are formatted, in the hopes of increasing portability.
 - Refactored if statements to be more simplistic.
 
@@ -22,6 +32,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial release.
 
-[unreleased]: https://github.com/StrangeRanger/mass-git/compare/v1.1.0...HEAD
+[unreleased]: https://github.com/StrangeRanger/mass-git/compare/v1.2.0...HEAD
+
+[v1.2.0]: https://github.com/StrangeRanger/mass-git/releases/tag/v1.2.0
 [v1.1.0]: https://github.com/StrangeRanger/mass-git/releases/tag/v1.1.0
 [v1.0.0]: https://github.com/StrangeRanger/mass-git/releases/tag/v1.0.0
