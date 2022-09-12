@@ -87,11 +87,11 @@ while [[ -n $1 ]]; do
             fi
             provided_path=true
             ;;
-        "-r"|"--recursive")                                                              
-            unset maxdepth  # Remove the maxium depth of recursion.                      
-            ;; 
+        "-r"|"--recursive")
+            unset maxdepth  # Remove the maxium depth of recursion.
+            ;;
         "-f"|"--fetch")
-            git_action="fetch"                                                                        
+            git_action="fetch"
             git_action_prog="Fetching"
             ;;
         "-d"|"--dry-run")
@@ -159,10 +159,10 @@ for repo_path in "${git_repos[@]}"; do
     repo_name="$(git config --get remote.origin.url)"
 
     echo "${blue}==>${nc} $git_action_prog changes from '$repo_name'..."
-    ## NOTE: $dry_run is purposefully unquoted. Do not quote it!                             
+    ## NOTE: $dry_run is purposefully unquoted. Do not quote it!
     # shellcheck disable=SC2086
     git "$git_action" $dry_run \
-        || echo "${red}ERROR:${nc} Failed to $git_action changes from '$repo_name'" 
+        || echo "${red}ERROR:${nc} Failed to $git_action changes from '$repo_name'"
 done
 
 echo "${green}==>${nc} Done"
