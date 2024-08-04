@@ -14,12 +14,12 @@ setup() {
 
     cd "$test_dir"
     mkdir mass-git
-    cp "$BATS_TEST_DIRNAME/../setup.sh" "$test_dir"
+    cp "$BATS_TEST_DIRNAME/../setup.bash" "$test_dir"
     cp "$BATS_TEST_DIRNAME/../mass-git" "$test_dir/mass-git"
     echo 'export PATH="/usr/local/opt/curl/bin:/usr/local/sbin"' >> "$test_dir/$shell_rc"
 
     export HOME="$test_dir"
-    ./setup.sh
+    ./setup.bash
 }
 
 teardown() {
