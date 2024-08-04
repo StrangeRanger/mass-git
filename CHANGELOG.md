@@ -16,6 +16,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Updated LICENSE copyright year to 2024.
 - Improved the handling of ANSI colors for output text.
 - Updated and removed unnecessary comments.
+- Updated and improved bash script formatting and style.
+- Reduced if nesting where possible.
 
 ### Fixed
 
