@@ -24,7 +24,7 @@ C_INFO="${C_BLUE}==>${C_NC} "
 C_NOTE="${C_CYAN}==>${C_NC} "
 
 ## Program information.
-C_VERSION="v1.2.0"
+C_VERSION="v1.2.2"
 
 ## Set constants as readonly.
 readonly C_GREEN C_BLUE C_CYAN C_RED C_NC
