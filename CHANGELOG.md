@@ -9,7 +9,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - New setup script to handle linking the script into user's local bin directory.
-- Tests to ensure functionality of setup script.
 
 ### Changed
 
@@ -31,7 +30,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Removed
 
 - Removed `.deesource.toml` file.
-- Remove tests and submodules.
 
 ## [v1.2.0] - 2022-08-05
 
