@@ -100,7 +100,7 @@ while [[ -n $1 ]]; do
 done
 
 if [[ -z $path ]]; then
-    echo "${C_INVALID_INPUT}Missing required argument '<path>'"
+    echo "${C_INVALID_INPUT}Missing required argument '<path>'" >&2
     exit 2
 fi
 
