@@ -28,6 +28,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Fixed slight problem with `readpath`.
 
+### Removed
+
+- Removed `.deesource.toml` file.
+- Remove tests and submodules.
+
 ## [v1.2.0] - 2022-08-05
 
 ### Added
@@ -55,7 +60,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Initial release.
 
 [unreleased]: https://github.com/StrangeRanger/mass-git/compare/v1.2.2...HEAD
-[v1.2.2]: https://github.com/StrangeRanger/mass-git/releases/tag/v1.2.2 
+[v1.2.2]: https://github.com/StrangeRanger/mass-git/releases/tag/v1.2.2
 [v1.2.0]: https://github.com/StrangeRanger/mass-git/releases/tag/v1.2.0
 [v1.1.0]: https://github.com/StrangeRanger/mass-git/releases/tag/v1.1.0
 [v1.0.0]: https://github.com/StrangeRanger/mass-git/releases/tag/v1.0.0
