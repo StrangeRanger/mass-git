@@ -9,32 +9,47 @@ Fetch or pull one or more git repositories at a specified location on your syste
 
 ## Getting Started
 
-### Installing
+### Download and Setup
 
-All you need to do is download the repository. There are no binaries or anything to install.
+If you want to use the script as is, you can download the script and run it directly:
 
-`git clone https://github.com/StrangeRanger/mass-git/`
+```bash
+git clone https://github.com/StrangeRanger/mass-git
+cd mass-git
+./mass-git
+```
+
+If you want the script accessible outside of the directory you downloaded it to, you can run the setup script. It will place a symbolic or hard link (configurable via the script) in your local bin directory (`~/.local/bin`).
+
+```bash
+git clone https://github.com/StrangeRanger/mass-git
+cd mass-git
+./setup.bash
+```
 
 ## Usage
 
 ```man
-Usage: ./mass-git [-r] [-f] [-d] -p <path>
-       ./mass-git -h
-       ./mass-git -v
+❯ ./mass-git -h
+Fetch or pull one or more git repositories at a specified location on your
+system.
+
+Usage: mass-git [-r] [-f] [-d] <path>
+       mass-git -h
+       mass-git -v
 
 Options:
-  -h, --help       : Displays this help message.
-  -p, --path       : Path to perform mass git pull/fetch on.
-  -r, --recursive  : Recursively locate git repositories.
-  -f, --fetch      : Fetch instead of pull from git repository.
-  -d, --dry-run    : Show what would be done, without making any changes.
-  -v, --version    : Display program version number.
+  -h, --help      : Displays this help message.
+  -r, --recursive : Recursively locate git repositories.
+  -f, --fetch     : Fetch instead of pull from git repository.
+  -d, --dry-run   : Show what would be done, without making any changes.
+  -v, --version   : Display program version number.
 ```
 
 Here is an example output:
 
 ```txt
-❯ ./mass-git.sh -r -p ~/Programs/tmp
+❯ ./mass-git.sh -r ~/Programs/tmp
 ==> Changing directories to '/Users/hunter/Programs/tmp/FINISH THESE/mass-git/'...
 ==> Pulling from 'https://github.com/StrangeRanger/mass-git.git'...
 remote: Enumerating objects: 5, done.
