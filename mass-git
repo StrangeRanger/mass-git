@@ -6,7 +6,7 @@
 #          Copyright (c) 2021-2024 Hunter T. (StrangeRanger)
 #
 ########################################################################################
-####[ Variables ]#######################################################################
+####[ Global Variables ]################################################################
 
 
 ## ANSI color codes.
@@ -15,21 +15,17 @@ C_BLUE="$(printf '\033[0;34m')"
 C_CYAN="$(printf '\033[0;36m')"
 C_RED="$(printf '\033[1;31m')"
 C_NC="$(printf '\033[0m')"
+readonly C_GREEN C_BLUE C_CYAN C_RED C_NC
 
 ## Shorthanded variables for colorized output.
-C_INVALID_INPUT="${C_RED}Invalid input:${C_NC} "
-C_SUCCESS="${C_GREEN}==>${C_NC} "
-C_ERROR="${C_RED}ERROR:${C_NC} "
-C_INFO="${C_BLUE}==>${C_NC} "
-C_NOTE="${C_CYAN}==>${C_NC} "
+readonly C_INVALID_INPUT="${C_RED}Invalid input:${C_NC} "
+readonly C_SUCCESS="${C_GREEN}==>${C_NC} "
+readonly C_ERROR="${C_RED}ERROR:${C_NC} "
+readonly C_INFO="${C_BLUE}==>${C_NC} "
+readonly C_NOTE="${C_CYAN}==>${C_NC} "
 
 ## Program information.
-C_VERSION="v1.2.2"
-
-## Set constants as readonly.
-readonly C_GREEN C_BLUE C_CYAN C_RED C_NC
-readonly C_INVALID_INPUT C_SUCCESS C_ERROR C_INFO C_NOTE
-readonly C_VERSION
+readonly C_VERSION="v1.2.2"
 
 ## Other variables.
 maxdepth="-maxdepth 2"  # Peform recursive searches with a maximum depth of 2.
@@ -58,24 +54,22 @@ usage() {
     echo "  -f, --fetch      : Fetch instead of pull from git repository."
     echo "  -d, --dry-run    : Show what would be done, without making any changes."
     echo "  -v, --version    : Display program version number."
+    exit 0
 }
 
 
 ####[ Options ]#########################################################################
 
 
-# If no arguments are provided...
-if [[ $# -eq 0 ]]; then
-    usage
-    exit 0
+if (( $# == 0 )); then
+    usage  # Will exit the script after execution.
 fi
 
 # While there are still arguments to traverse...
 while [[ -n $1 ]]; do
     case "$1" in
         "-h"|"--help")
-            usage
-            exit 0
+            usage  # Will exit the script after execution.
             ;;
         "-p"|"--path")
             shift
@@ -83,8 +77,6 @@ while [[ -n $1 ]]; do
             if hash realpath; then
                 path="$(realpath "$1" 2>/dev/null || echo "BAD MAGIC")"
             else
-                # This solution was found at the following link:
-                # https://stackoverflow.com/questions/4175264/how-to-retrieve-absolute-path-given-relative/31605674#31605674
                 path="$(cd "${1%/*}" || exit; pwd)/${1##*/}"
             fi
             provided_path=true
@@ -115,14 +107,14 @@ done
 if "$provided_path"; then
     if [[ -f $path ]]; then
         echo "${C_INVALID_INPUT}File was provided when a directory was expected" >&2
-        exit 1
+        exit 2
     elif [[ ! -d $path ]]; then
         echo "${C_INVALID_INPUT}Directory does not exist" >&2
-        exit 1
+        exit 2
     fi
 else
     echo "${C_INVALID_INPUT}Missing required argument '-p <path>'"
-    exit 1
+    exit 2
 fi
 
 
@@ -131,15 +123,16 @@ fi
 
 ## Store the location of all local repositories found.
 # shellcheck disable=SC2086
+#   The $maxdepth variable should remain unquoted, such that when it's unset, it doesn't
+#   cause an error.
 while read -r -d $'\0'; do
     git_repos+=("${REPLY/%.git/}")
 done < <(find "$path" $maxdepth -type d -name ".git" -prune -print0)
 
 # If no local repositories were found...
-# NOTE: Leave $git_repos as is. It's fine that only the first index of the array is
-#       provided, as all I'm are trying to do is confirm whether or not a git
-#       initialized directory was located.
 # shellcheck disable=SC2128
+#   We only need to check the first index of the array, as all we're doing is checking
+#   if the array is empty or not.
 if [[ -z $git_repos ]]; then
     echo "${C_ERROR}No git initialized directory could be found"
     exit 1
@@ -157,9 +150,12 @@ for repo_path in "${git_repos[@]}"; do
 
     echo "${C_INFO}$git_action_prog changes from '$repo_name'..."
     # shellcheck disable=SC2086
+    #   The $dry_run variable should remain unquoted, such that when it's not set, it
+    #   doesn't cause an error.
     git "$git_action" $dry_run \
         || echo "${C_ERROR}Failed to $git_action changes from '$repo_name'"
 done
 
 echo "${C_SUCCESS}Done"
+
 
