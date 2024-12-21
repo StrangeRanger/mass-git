@@ -108,7 +108,7 @@ if [[ -f $path ]]; then
     echo "${C_INVALID_INPUT}File was provided when a directory was expected" >&2
     exit 2
 elif [[ ! -d $path ]]; then
-    echo "${C_INVALID_INPUT}Directory does not exist" >&2
+    echo "${C_INVALID_INPUT}Directory '$path' does not exist" >&2
     exit 2
 fi
 
