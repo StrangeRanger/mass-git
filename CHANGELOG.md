@@ -18,6 +18,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Updated and removed unnecessary comments.
 - Updated and improved bash script formatting and style.
 - Reduced if nesting where possible.
+- Consolidated redundant variable declarations and ensured consistent use of `readonly`.
+- Enhanced clarity and maintainability of conditional logic for options parsing.
+- Improved comments to explain rationale for shellcheck suppressions.
+- Refined error handling and exit codes for invalid input and directory checks.
+- Standardized style and formatting for better readability.
 
 ### Fixed
 
