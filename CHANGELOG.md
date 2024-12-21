@@ -6,12 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+> [!WARNING]
+> <u>**BREAKING CHANGE**</u>
+>
+> This release has a breaking change, as the `path` argument no longer requires a flag. It is now a positional argument. This means that the script will no longer work with the `-p` flag. Instead, you will need to provide the path as a standalone argument anywhere in the command.
+
 ### Added
 
 - New setup script to handle linking the script into user's local bin directory.
 
 ### Changed
 
+- ⚠️ The `path` no longer requires a flag, and is now a positional argument.
 - Updated LICENSE copyright year to 2024.
 - Improved the handling of ANSI colors for output text.
 - Updated and removed unnecessary comments.
