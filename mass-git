@@ -25,11 +25,10 @@ readonly C_INFO="${C_BLUE}==>${C_NC} "
 readonly C_NOTE="${C_CYAN}==>${C_NC} "
 
 ## Program information.
-readonly C_VERSION="v1.2.2"
+readonly C_VERSION="v2.0.0"
 
 ## Other variables.
-maxdepth="-maxdepth 2"  # Peform recursive searches with a maximum depth of 2.
-provided_path=false  # Validates that a path was provided.
+maxdepth="-maxdepth 2"  # Perform recursive searches with a maximum depth of 2.
 git_repos=()  # List of paths to existing repositories on the system.
 git_action="pull"
 git_action_prog="Pulling"
@@ -41,19 +40,19 @@ git_action_prog="Pulling"
 ####
 # Display the usage message for the program.
 usage() {
-    echo "Fetch or pull one or more git repositories at a specified location on your system."
+    echo "Fetch or pull one or more git repositories at a specified location on your"
+    echo "system."
     echo ""
-    echo "Usage: ${0##*/} [-r] [-f] [-d] -p <path>"
+    echo "Usage: ${0##*/} [-r] [-f] [-d] <path>"
     echo "       ${0##*/} -h"
     echo "       ${0##*/} -v"
     echo ""
     echo "Options:"
-    echo "  -h, --help       : Displays this help message."
-    echo "  -p, --path       : Path to perform mass git pull/fetch on."
-    echo "  -r, --recursive  : Recursively locate git repositories."
-    echo "  -f, --fetch      : Fetch instead of pull from git repository."
-    echo "  -d, --dry-run    : Show what would be done, without making any changes."
-    echo "  -v, --version    : Display program version number."
+    echo "  -h, --help      : Displays this help message."
+    echo "  -r, --recursive : Recursively locate git repositories."
+    echo "  -f, --fetch     : Fetch instead of pull from git repository."
+    echo "  -d, --dry-run   : Show what would be done, without making any changes."
+    echo "  -v, --version   : Display program version number."
     exit 0
 }
 
@@ -71,18 +70,8 @@ while [[ -n $1 ]]; do
         "-h"|"--help")
             usage  # Will exit the script after execution.
             ;;
-        "-p"|"--path")
-            shift
-
-            if hash realpath; then
-                path="$(realpath "$1" 2>/dev/null || echo "BAD MAGIC")"
-            else
-                path="$(cd "${1%/*}" || exit; pwd)/${1##*/}"
-            fi
-            provided_path=true
-            ;;
         "-r"|"--recursive")
-            unset maxdepth  # Remove the maxium depth of recursion.
+            unset maxdepth  # Remove the maximum depth of recursion.
             ;;
         "-f"|"--fetch")
             git_action="fetch"
@@ -95,25 +84,31 @@ while [[ -n $1 ]]; do
             echo "Mass Git $C_VERSION"
             exit 0
             ;;
-        *)
+        -*)
             echo "${C_RED}Invalid option:${C_NC} $1" >&2
             exit 1
+            ;;
+        *)
+            if hash realpath; then
+                path="$(realpath "$1" 2>/dev/null || echo "BAD MAGIC")"
+            else
+                path="$(cd "${1%/*}" || exit; pwd)/${1##*/}"
+            fi
             ;;
     esac
     shift
 done
 
-## Check if the provided path is a valid directory.
-if "$provided_path"; then
-    if [[ -f $path ]]; then
-        echo "${C_INVALID_INPUT}File was provided when a directory was expected" >&2
-        exit 2
-    elif [[ ! -d $path ]]; then
-        echo "${C_INVALID_INPUT}Directory does not exist" >&2
-        exit 2
-    fi
-else
-    echo "${C_INVALID_INPUT}Missing required argument '-p <path>'"
+if [[ -z $path ]]; then
+    echo "${C_INVALID_INPUT}Missing required argument '<path>'"
+    exit 2
+fi
+
+if [[ -f $path ]]; then
+    echo "${C_INVALID_INPUT}File was provided when a directory was expected" >&2
+    exit 2
+elif [[ ! -d $path ]]; then
+    echo "${C_INVALID_INPUT}Directory does not exist" >&2
     exit 2
 fi
 
@@ -157,5 +152,3 @@ for repo_path in "${git_repos[@]}"; do
 done
 
 echo "${C_SUCCESS}Done"
-
-
