@@ -85,7 +85,7 @@ while [[ -n $1 ]]; do
             exit 0
             ;;
         -*)
-            echo "${C_RED}Invalid option:${C_NC} $1" >&2
+            echo "${C_ERROR}Invalid argument: $1" >&2
             exit 1
             ;;
         *)
@@ -129,7 +129,7 @@ done < <(find "$path" $maxdepth -type d -name ".git" -prune -print0)
 #   We only need to check the first index of the array, as all we're doing is checking
 #   if the array is empty or not.
 if [[ -z $git_repos ]]; then
-    echo "${C_ERROR}No git initialized directory could be found"
+    echo "${C_ERROR}No git initialized directory could be found" >&2
     exit 1
 fi
 
@@ -138,7 +138,7 @@ fi
 for repo_path in "${git_repos[@]}"; do
     echo "${C_INFO}Changing directories to '$repo_path'..."
     cd "$repo_path" || {
-        echo "${C_ERROR}Failed to change directories"
+        echo "${C_ERROR}Failed to change directories" >&2
         exit 1
     }
     repo_name="$(git config --get remote.origin.url)"
@@ -148,7 +148,7 @@ for repo_path in "${git_repos[@]}"; do
     #   The $dry_run variable should remain unquoted, such that when it's not set, it
     #   doesn't cause an error.
     git "$git_action" $dry_run \
-        || echo "${C_ERROR}Failed to $git_action changes from '$repo_name'"
+        || echo "${C_ERROR}Failed to $git_action changes from '$repo_name'" >&2
 done
 
 echo "${C_SUCCESS}Done"
