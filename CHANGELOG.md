@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+<!--## v2.0.0 - 2024-12-21-->
+
 > [!WARNING]
 > <u>**BREAKING CHANGE**</u>
 >
@@ -18,7 +20,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - ⚠️ The `path` no longer requires a flag, and is now a positional argument.
-- Updated LICENSE copyright year to 2024.
 - Improved the handling of ANSI colors for output text.
 - Updated and removed unnecessary comments.
 - Updated and improved bash script formatting and style.
