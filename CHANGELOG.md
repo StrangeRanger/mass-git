@@ -16,7 +16,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Improved the handling of ANSI colors for output text.
 - Updated and removed unnecessary comments.
 - Updated and improved bash script formatting and style.
-- Reduced if nesting where possible.
 - Consolidated redundant variable declarations and ensured consistent use of `readonly`.
 - Enhanced clarity and maintainability of conditional logic for options parsing.
 - Improved comments to explain rationale for shellcheck suppressions.
@@ -25,7 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 
-- Fixed slight problem with `readpath`.
+- Fixed slight problem with `realpath`.
 
 ### Removed
 
