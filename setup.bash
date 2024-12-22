@@ -4,8 +4,6 @@
 # directory. This will allow the script to be executed anywhere in the terminal.
 #
 # Version: v1.0.0
-# License: MIT License
-#          Copyright (c) 2021-2024 Hunter T. (StrangeRanger)
 #
 ########################################################################################
 ####[ Global Variables ]################################################################
@@ -42,6 +40,12 @@ readonly C_LOCAL_BIN="$HOME/.local/bin"
 ####[ Functions ]#######################################################################
 
 
+####
+# Check if the '~/.local/bin/' directory is in the 'PATH' environment variable.
+#
+# RETURNS:
+#   - 0: If the '~/.local/bin/' directory is in the 'PATH'.
+#   - 1: If the '~/.local/bin/' directory is NOT in the 'PATH'.
 check_path() {
     echo "${C_INFO}Checking if '$C_LOCAL_BIN' is in your 'PATH'..."
     if echo "$PATH" | grep -qE "$C_LOCAL_BIN"; then
@@ -51,6 +55,9 @@ check_path() {
     fi
 }
 
+####
+# Remove the existing symlink or hard link to the 'mass-git' script in the
+# '~/.local/bin/' directory.
 remove_link() {
     if [[ -L "$C_LOCAL_BIN/mass-git" ]]; then
         echo "${C_INFO}Removing existing symlink to 'mass-git' in '$C_LOCAL_BIN'..."
