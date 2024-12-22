@@ -6,6 +6,37 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## v2.0.0 - 2024-12-22
+
+> [!WARNING]
+> <u>**BREAKING CHANGE**</u>
+>
+> This release has a breaking change, as the `path` argument no longer requires a flag. It is now a positional argument. This means that the script will no longer work with the `-p` flag. Instead, you will need to provide the path as a standalone argument anywhere in the command.
+
+### Added
+
+- New setup script to handle linking the script into user's local bin directory.
+
+### Changed
+
+- ⚠️ The `path` no longer requires a flag, and is now a positional argument.
+- Improved the handling of ANSI colors for output text.
+- Updated and removed unnecessary comments.
+- Updated and improved bash script formatting and style.
+- Consolidated redundant variable declarations and ensured consistent use of `readonly`.
+- Enhanced clarity and maintainability of conditional logic for options parsing.
+- Improved comments to explain rationale for shellcheck suppressions.
+- Refined error handling and exit codes for invalid input and directory checks.
+- Standardized style and formatting for better readability.
+
+### Fixed
+
+- Fixed slight problem with `realpath`.
+
+### Removed
+
+- Removed `.deesource.toml` file.
+
 ## [v1.2.0] - 2022-08-05
 
 ### Added
@@ -32,8 +63,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Initial release.
 
-[unreleased]: https://github.com/StrangeRanger/mass-git/compare/v1.2.0...HEAD
-
+[unreleased]: https://github.com/StrangeRanger/mass-git/compare/v1.2.2...HEAD
+[v1.2.2]: https://github.com/StrangeRanger/mass-git/releases/tag/v1.2.2
 [v1.2.0]: https://github.com/StrangeRanger/mass-git/releases/tag/v1.2.0
 [v1.1.0]: https://github.com/StrangeRanger/mass-git/releases/tag/v1.1.0
 [v1.0.0]: https://github.com/StrangeRanger/mass-git/releases/tag/v1.0.0
