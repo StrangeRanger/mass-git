@@ -2,7 +2,7 @@
 #
 # Fetch or pull one or more git repositories at a specified location on your system.
 #
-# Version: 2.0.1
+# Version: $C_VERSION
 # License: MIT License
 #          Copyright (c) 2021-2025 Hunter T. (StrangeRanger)
 #
@@ -26,7 +26,7 @@ readonly C_INFO="${C_BLUE}==>${C_NC} "
 readonly C_NOTE="${C_CYAN}==>${C_NC} "
 
 ## Program information.
-readonly C_VERSION="v2.0.0"
+readonly C_VERSION="v2.0.2"
 
 ## Other variables.
 maxdepth="-maxdepth 2"  # Perform recursive searches with a maximum depth of 2.
