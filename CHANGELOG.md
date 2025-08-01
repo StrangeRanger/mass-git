@@ -6,7 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## v2.0.2 - 2025-08-01
+
+### Changed
+
+- Improved the README with additional information.
+
+### Fixed
+
+- Fixed incorrect version number.
+
 ## v2.0.1 - 2025-08-01
+
+### Changed
+
+- Massive update to README to improve clarity and usability.
 
 ### Fixed
 
