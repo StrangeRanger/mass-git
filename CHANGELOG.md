@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## v2.0.1 - 2025-08-01
+
+### Fixed
+
+- Updated invalid argument exit code to `2`, to conform with POSIX standard.
+
 ## v2.0.0 - 2024-12-22
 
 > [!WARNING]
