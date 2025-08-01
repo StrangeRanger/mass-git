@@ -5,50 +5,48 @@
 [![Style Guide](https://img.shields.io/badge/code%20style-Style%20Guide-blueviolet)](https://bsg.hthompson.dev/)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/494a52222d904c0cb37366e598eaf8a3)](https://www.codacy.com/gh/StrangeRanger/mass-git/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=StrangeRanger/mass-git&amp;utm_campaign=Badge_Grade)
 
-Fetch or pull one or more git repositories at a specified location on your system.
+A simple bash script to fetch or pull one or more git repositories at a specified location on your system. Perfect for keeping multiple projects up-to-date with a single command.
 
 <details>
 <summary><strong>Table of Contents</strong></summary>
 
 - [Mass Git](#mass-git)
-  - [Features](#features)
   - [Demo](#demo)
+  - [Features](#features)
   - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Download and Setup](#download-and-setup)
       - [1. Quick Start (Run Directly)](#1-quick-start-run-directly)
       - [2. Install Globally (Recommended)](#2-install-globally-recommended)
-  - [Uninstallation](#uninstallation)
   - [Usage](#usage)
-  - [Troubleshooting / FAQ](#troubleshooting--faq)
+  - [Uninstallation](#uninstallation)
   - [Supported Operating Systems](#supported-operating-systems)
+  - [Troubleshooting / FAQ](#troubleshooting--faq)
   - [Support](#support)
   - [License](#license)
 
 </details>
 
-
-## Features
-
-- Recursively locate and update multiple git repositories in a directory
-- Choose between `git pull` and `git fetch` for updates
-- Dry-run mode to preview actions without making changes
-- Simple CLI interface with helpful flags
-- Works on Linux and macOS (and most Unix-like systems)
-
 ## Demo
 
 [![asciicast](https://asciinema.hthompson.dev/a/4.svg)](https://asciinema.hthompson.dev/a/4)
 
-*Demo: Quickly update all git repositories in a directory tree with a single command. The video shows recursive search, dry-run, and pull options in action.*
+## Features
+
+- **Bulk repository management**: Automatically discover and update multiple git repositories in a directory
+- **Flexible update modes**: Choose between `git pull` (merge changes) and `git fetch` (download only)
+- **Smart repository detection**: Recursively find all `.git` directories with configurable depth
+- **Safe preview mode**: Dry-run option to see what actions would be performed before executing
+- **Robust error handling**: Continues processing other repositories even if one fails
+- **Cross-platform compatibility**: Works on Linux, macOS, and other Unix-like systems
+- **Zero dependencies**: Pure bash script with no external requirements beyond git
 
 ## Getting Started
 
 ### Prerequisites
 
-- Bash (v4+ recommended)
-- Git (v2+ recommended)
-- Unix-like OS (Linux, macOS, BSD, WSL, etc.)
+- **Bash** (v4+ recommended)
+- **Git** (v2+ recommended)
 
 ### Download and Setup
 
@@ -74,24 +72,15 @@ cd mass-git
 ./setup.bash
 ```
 
-After installation, you can run `mass-git` from any directory.
+Next, verify that the script is executable and available in your PATH:
+
+```bash
+mass-git -v
+# Should output something like: Mass Git v2.0.2
+```
 
 > [!NOTE]
 > By default, `setup.bash` creates a hard link in `~/.local/bin`. To use a symbolic link instead, set `C_USE_HARD_LINK=false` in the script.
-
-## Uninstallation
-
-To remove the script, simply delete the `mass-git` file from your system. If you used `setup.bash`, remove the link from `~/.local/bin`:
-
-```bash
-rm ~/.local/bin/mass-git
-```
-
-If you cloned the repository, you can also delete the `mass-git` directory:
-
-```bash
-rm -rf <path_to_mass_git_directory>
-```
 
 ## Usage
 
@@ -112,33 +101,19 @@ Options:
   -v, --version   : Display program version number.
 ```
 
-## Troubleshooting / FAQ
+## Uninstallation
 
-<details>
-<summary><strong>Q: I get a 'Permission denied' error when running the script.</strong></summary>
-
-A: Make sure the script is executable: <code>chmod +x mass-git</code>.
-
-</details>
-
-<details>
-<summary><strong>Q: The script is not found after running setup.</strong></summary>
-
-A: Ensure <code>~/.local/bin</code> is in your <code>$PATH</code>. You can add it to your shell profile:
+To remove the script, simply delete the `mass-git` file from your system. If you used `setup.bash`, remove the link from `~/.local/bin`:
 
 ```bash
-echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
-source ~/.bashrc
+rm ~/.local/bin/mass-git
 ```
 
-</details>
+If you cloned the repository, you can also delete the `mass-git` directory:
 
-<details>
-<summary><strong>Q: Does this work on Windows?</strong></summary>
-
-A: Not natively, but it should work in WSL or other Unix-like environments.
-
-</details>
+```bash
+rm -rf <path_to_mass_git_directory>
+```
 
 ## Supported Operating Systems
 
@@ -148,6 +123,53 @@ This program should work on all Unix and Unix-like operating systems that have b
 - macOS
 - BSD variants
 - Windows Subsystem for Linux (WSL)
+
+## Troubleshooting / FAQ
+
+<details>
+<summary><strong>Q: I get a 'Permission denied' error when running the script.</strong></summary>
+
+> **A:** Make sure the script is executable: `chmod +x mass-git`.
+
+</details>
+
+<details>
+<summary><strong>Q: The script is not found after running setup.</strong></summary>
+
+> **A:** Ensure `~/.local/bin` is in your `$PATH`. You can add it to your shell resource file:
+>
+> ```bash
+> # For bash users:
+> echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+> source ~/.bashrc
+>
+> # For zsh users:
+> echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
+> source ~/.zshrc
+> ```
+
+</details>
+
+<details>
+<summary><strong>Q: Does this work on Windows?</strong></summary>
+
+> **A:** Not natively, but it should work in WSL or other Unix-like environments.
+
+</details>
+
+<details>
+<summary><strong>Q: How does the script handle authentication?</strong></summary>
+
+> **A:** The script uses your existing git configuration and SSH keys.
+
+</details>
+
+<details>
+<summary><strong>Q: What happens if a repository has uncommitted changes?</strong></summary>
+
+> **A:** The script will attempt to pull/fetch as normal. Git's built-in safety features will prevent data loss, but you may see warnings about uncommitted changes.
+
+</details>
 
 ## Support
 
