@@ -2,7 +2,7 @@
 #
 # Fetch or pull one or more git repositories at a specified location on your system.
 #
-# Version: $C_VERSION
+# Version: v2.0.2
 # License: MIT License
 #          Copyright (c) 2021-2025 Hunter T. (StrangeRanger)
 #
