@@ -22,7 +22,7 @@ A simple bash script to fetch or pull one or more git repositories at a specifie
   - [Uninstallation](#uninstallation)
   - [Supported Operating Systems](#supported-operating-systems)
   - [Troubleshooting / FAQ](#troubleshooting--faq)
-  - [Support](#support)
+  - [Support and Issues](#support-and-issues)
   - [License](#license)
 
 </details>
@@ -171,9 +171,9 @@ This program should work on all Unix and Unix-like operating systems that have b
 
 </details>
 
-## Support
+## Support and Issues
 
-For questions, suggestions, or bug reports, please open an issue on [GitHub](https://github.com/StrangeRanger/mass-git/issues).
+Please use [GitHub Issues](https://github.com/StrangeRanger/mass-git/issues) for bug reports and feature requests.
 
 ## License
 
