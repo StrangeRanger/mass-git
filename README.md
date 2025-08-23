@@ -45,8 +45,8 @@ A simple bash script to fetch or pull one or more git repositories at a specifie
 
 ### Prerequisites
 
-- **Bash** (v4+ recommended)
-- **Git** (v2+ recommended)
+- **Bash**: Version 4.0 or higher
+- **Git**: Version 2.0 or higher
 
 ### Download and Setup
 
