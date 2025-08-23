@@ -129,7 +129,7 @@ This program should work on all Unix and Unix-like operating systems that have b
 <details>
 <summary><strong>Q: I get a 'Permission denied' error when running the script.</strong></summary>
 
-> **A:** Make sure the script is executable: `chmod +x mass-git`.
+> **A:** Make sure the script is executable: `chmod +x mass-git`
 
 </details>
 
