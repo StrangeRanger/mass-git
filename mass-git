@@ -2,20 +2,20 @@
 #
 # Fetch or pull one or more git repositories at a specified location on your system.
 #
-# Version: v2.0.2
+# Version: v2.0.3
 # License: MIT License
-#          Copyright (c) 2021-2025 Hunter T. (StrangeRanger)
+#          Copyright (c) 2021-2026 Hunter T. (StrangeRanger)
 #
 ########################################################################################
 ####[ Global Variables ]################################################################
 
 
 ## ANSI color codes.
-C_GREEN="$(printf '\033[0;32m')"
-C_BLUE="$(printf '\033[0;34m')"
-C_CYAN="$(printf '\033[0;36m')"
-C_RED="$(printf '\033[1;31m')"
-C_NC="$(printf '\033[0m')"
+C_GREEN=$'\033[0;32m'
+C_BLUE=$'\033[0;34m'
+C_CYAN=$'\033[0;36m'
+C_RED=$'\033[1;31m'
+C_NC=$'\033[0m'
 readonly C_GREEN C_BLUE C_CYAN C_RED C_NC
 
 ## Shorthanded variables for colorized output.
@@ -26,7 +26,7 @@ readonly C_INFO="${C_BLUE}==>${C_NC} "
 readonly C_NOTE="${C_CYAN}==>${C_NC} "
 
 ## Program information.
-readonly C_VERSION="v2.0.2"
+readonly C_VERSION="v2.0.3"
 
 ## Other variables.
 maxdepth="-maxdepth 2"  # Perform recursive searches with a maximum depth of 2.
@@ -41,20 +41,21 @@ git_action_prog="Pulling"
 ####
 # Display the usage message for the program.
 usage() {
-    echo "Fetch or pull one or more git repositories at a specified location on your"
-    echo "system."
-    echo ""
-    echo "Usage: ${0##*/} [-r] [-f] [-d] <path>"
-    echo "       ${0##*/} -h"
-    echo "       ${0##*/} -v"
-    echo ""
-    echo "Options:"
-    echo "  -h, --help      : Displays this help message."
-    echo "  -r, --recursive : Recursively locate git repositories."
-    echo "  -f, --fetch     : Fetch instead of pull from git repository."
-    echo "  -d, --dry-run   : Show what would be done, without making any changes."
-    echo "  -v, --version   : Display program version number."
-    exit 0
+    cat <<EOF
+Fetch or pull one or more git repositories at a specified location on your system.
+
+${C_BLUE}Usage:
+  ${C_GREEN}${0##*/} ${C_CYAN}[-r] [-f] [-d] <path>${C_NC}
+  ${C_GREEN}${0##*/} ${C_CYAN}-h${C_NC}
+  ${C_GREEN}${0##*/} ${C_CYAN}-v${C_NC}
+
+${C_BLUE}Options:${C_NC}
+  ${C_CYAN}-h${C_NC}, ${C_CYAN}--help${C_NC}        Displays this help message
+  ${C_CYAN}-r${C_NC}, ${C_CYAN}--recursive${C_NC}   Recursively locate git repositories
+  ${C_CYAN}-f${C_NC}, ${C_CYAN}--fetch${C_NC}       Fetch instead of pull from git repository
+  ${C_CYAN}-d${C_NC}, ${C_CYAN}--dry-run${C_NC}     Show what would be done, without making any changes
+  ${C_CYAN}-v${C_NC}, ${C_CYAN}--version${C_NC}     Display program version number
+EOF
 }
 
 
@@ -62,14 +63,16 @@ usage() {
 
 
 if (( $# == 0 )); then
-    usage  # Will exit the script after execution.
+    usage
+    exit 0
 fi
 
 # While there are still arguments to traverse...
 while [[ -n $1 ]]; do
     case "$1" in
         "-h"|"--help")
-            usage  # Will exit the script after execution.
+            usage
+            exit 0
             ;;
         "-r"|"--recursive")
             unset maxdepth  # Remove the maximum depth of recursion.
