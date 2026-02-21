@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## v2.0.2 - 2026-02-21
+
+### Added
+
+- Colorized output of help/usage information.
+
+### Changed
+
+- Slightly reformatted the help/usage information for better readability.
+- Moved exit functionality from `usage` function to lines after the function call, to allow for more flexibility.
+- Update LICENSE file to reflect the new year.
+
 ## v2.0.2 - 2025-08-01
 
 ### Changed
