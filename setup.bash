@@ -20,11 +20,11 @@ readonly C_USE_HARD_LINK=true  # Use hard link instead of symlink to 'mass-git' 
 ###
 
 ## ANSI color codes.
-C_GREEN="$(printf '\033[0;32m')"
-C_BLUE="$(printf '\033[0;34m')"
-C_CYAN="$(printf '\033[0;36m')"
-C_RED="$(printf '\033[1;31m')"
-C_NC="$(printf '\033[0m')"
+C_GREEN=$'\033[0;32m'
+C_BLUE=$'\033[0;34m'
+C_CYAN=$'\033[0;36m'
+C_RED=$'\033[1;31m'
+C_NC=$'\033[0m'
 readonly C_GREEN C_BLUE C_CYAN C_RED C_NC
 
 ## Shorthanded variables for colorized output.
