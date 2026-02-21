@@ -50,7 +50,7 @@ A simple bash script to fetch or pull one or more git repositories at a specifie
 
 ### Download and Setup
 
-You can run Mass Git immediately in your current directory or install it globally for convenience:
+You can run Mass Git immediately in your current directory or install it locally for convenience:
 
 #### 1. Quick Start (Run Directly)
 
@@ -62,7 +62,7 @@ chmod +x mass-git
 ./mass-git
 ```
 
-#### 2. Install Globally (Recommended)
+#### 2. Install Locally (Recommended)
 
 To use Mass Git from anywhere, install it to your local bin directory:
 
@@ -76,7 +76,7 @@ Next, verify that the script is executable and available in your PATH:
 
 ```bash
 mass-git -v
-# Should output something like: Mass Git v2.0.2
+# Should output something like: Mass Git v2.0.3
 ```
 
 > [!NOTE]
@@ -85,20 +85,20 @@ mass-git -v
 ## Usage
 
 ```man
-❯ mass-git -h
-Fetch or pull one or more git repositories at a specified location on your
-system.
+❯ mass-git -h         
+Fetch or pull one or more git repositories at a specified location on your system.
 
-Usage: mass-git [-r] [-f] [-d] <path>
-       mass-git -h
-       mass-git -v
+Usage:
+  mass-git [-r] [-f] [-d] <path>
+  mass-git -h
+  mass-git -v
 
 Options:
-  -h, --help      : Displays this help message.
-  -r, --recursive : Recursively locate git repositories.
-  -f, --fetch     : Fetch instead of pull from git repository.
-  -d, --dry-run   : Show what would be done, without making any changes.
-  -v, --version   : Display program version number.
+  -h, --help        Displays this help message
+  -r, --recursive   Recursively locate git repositories
+  -f, --fetch       Fetch instead of pull from git repository
+  -d, --dry-run     Show what would be done, without making any changes
+  -v, --version     Display program version number
 ```
 
 ## Uninstallation
