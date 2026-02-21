@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Slightly reformatted the help/usage information for better readability.
 - Moved exit functionality from `usage` function to lines after the function call, to allow for more flexibility.
+- Simplify the logic for text colorization by removing `printf` and using ANSI escape codes directly in the variable declarations.
 - Update LICENSE file to reflect the new year.
 
 ## v2.0.2 - 2025-08-01
