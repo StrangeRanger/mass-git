@@ -56,7 +56,6 @@ ${C_BLUE}Options:${C_NC}
   ${C_CYAN}-d${C_NC}, ${C_CYAN}--dry-run${C_NC}     Show what would be done, without making any changes
   ${C_CYAN}-v${C_NC}, ${C_CYAN}--version${C_NC}     Display program version number
 EOF
-    exit 0
 }
 
 
@@ -64,14 +63,16 @@ EOF
 
 
 if (( $# == 0 )); then
-    usage  # Will exit the script after execution.
+    usage
+    exit 0
 fi
 
 # While there are still arguments to traverse...
 while [[ -n $1 ]]; do
     case "$1" in
         "-h"|"--help")
-            usage  # Will exit the script after execution.
+            usage
+            exit 0
             ;;
         "-r"|"--recursive")
             unset maxdepth  # Remove the maximum depth of recursion.
