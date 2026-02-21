@@ -41,19 +41,21 @@ git_action_prog="Pulling"
 ####
 # Display the usage message for the program.
 usage() {
-    echo "Fetch or pull one or more git repositories at a specified location on your"
-    echo "system."
-    echo ""
-    echo "Usage: ${0##*/} [-r] [-f] [-d] <path>"
-    echo "       ${0##*/} -h"
-    echo "       ${0##*/} -v"
-    echo ""
-    echo "Options:"
-    echo "  -h, --help      : Displays this help message."
-    echo "  -r, --recursive : Recursively locate git repositories."
-    echo "  -f, --fetch     : Fetch instead of pull from git repository."
-    echo "  -d, --dry-run   : Show what would be done, without making any changes."
-    echo "  -v, --version   : Display program version number."
+    cat <<EOF
+Fetch or pull one or more git repositories at a specified location on your system.
+
+${C_BLUE}Usage:
+  ${C_GREEN}${0##*/} ${C_CYAN}[-r] [-f] [-d] <path>${C_NC}
+  ${C_GREEN}${0##*/} ${C_CYAN}-h${C_NC}
+  ${C_GREEN}${0##*/} ${C_CYAN}-v${C_NC}
+
+${C_BLUE}Options:${C_NC}
+  ${C_CYAN}-h${C_NC}, ${C_CYAN}--help${C_NC}        Displays this help message
+  ${C_CYAN}-r${C_NC}, ${C_CYAN}--recursive${C_NC}   Recursively locate git repositories
+  ${C_CYAN}-f${C_NC}, ${C_CYAN}--fetch${C_NC}       Fetch instead of pull from git repository
+  ${C_CYAN}-d${C_NC}, ${C_CYAN}--dry-run${C_NC}     Show what would be done, without making any changes
+  ${C_CYAN}-v${C_NC}, ${C_CYAN}--version${C_NC}     Display program version number
+EOF
     exit 0
 }
 
