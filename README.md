@@ -29,7 +29,7 @@ A simple bash script to fetch or pull one or more git repositories at a specifie
 
 ## Demo
 
-[![asciicast](https://asciinema.hthompson.dev/a/4.svg)](https://asciinema.hthompson.dev/a/4)
+[![asciicast](https://asciinema.org/a/827090.svg)](https://asciinema.org/a/827090)
 
 ## Features
 
