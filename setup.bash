@@ -20,7 +20,6 @@ readonly C_USE_HARD_LINK=true  # Use hard link instead of symlink to 'mass-git' 
 ### [ Non-configurable Constants ]
 ###
 
-## ANSI color codes.
 C_GREEN=$'\033[0;32m'
 C_BLUE=$'\033[0;34m'
 C_CYAN=$'\033[0;36m'
@@ -29,7 +28,6 @@ C_YELLOW=$'\033[1;33m'
 C_NC=$'\033[0m'
 readonly C_GREEN C_BLUE C_CYAN C_RED C_YELLOW C_NC
 
-## Shorthanded variables for colorized output.
 readonly C_SUCC="${C_GREEN}==>${C_NC} "
 readonly C_ERROR="${C_RED}ERROR:${C_NC} "
 readonly C_INFO="${C_BLUE}==>${C_NC} "
