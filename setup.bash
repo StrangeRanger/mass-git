@@ -3,7 +3,7 @@
 # Create a symbolic or hard link to the 'mass-git' script in the '~/.local/bin/'
 # directory. This will allow the script to be executed anywhere in the terminal.
 #
-# Version: v1.0.0
+# Version: v1.0.1
 #
 ########################################################################################
 ####[ Global Variables ]################################################################
