@@ -112,7 +112,7 @@ else
 fi
 
 if check_path "$C_LOCAL_BIN"; then
-    echo "${C_SUCC}Path to '$C_LOCAL_BIN' already exists in your 'PATH'"
+    echo "${C_NOTE}Path to '$C_LOCAL_BIN' already exists in your 'PATH'"
 else
     echo "${C_WARN}It appears that '$C_LOCAL_BIN' is not in your 'PATH'"
     echo "${C_NOTE}Please add the following to your 'PATH':"
