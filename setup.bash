@@ -104,3 +104,5 @@ else
     echo "${C_NOTE}Please add the following to your 'PATH':"
     echo "${C_NOTE}  \$HOME/.local/bin"
 fi
+
+echo "${C_SUCCESS}Done"
