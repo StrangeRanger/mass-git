@@ -4,6 +4,8 @@
 # directory. This will allow the script to be executed anywhere in the terminal.
 #
 # Version: v1.0.2
+# License: MIT License
+#          Copyright (c) 2021-2026 Hunter T. (StrangeRanger)
 #
 ########################################################################################
 set -euo pipefail
