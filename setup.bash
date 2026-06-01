@@ -49,14 +49,7 @@ readonly C_SCRIPT_DIR
 
 ####
 # Check if the '~/.local/bin/' directory is in the 'PATH' environment variable.
-#
-# PARAMETERS:
-#   - $1: path_to_check (Required)
-#
-# RETURNS:
-#   - 0: If the '~/.local/bin/' directory is in the 'PATH'.
-#   - 1: If the '~/.local/bin/' directory is NOT in the 'PATH'.
-check_path() {
+does_path_exist() {
     local path_to_check="$1"
 
     echo "${C_INFO}Checking if '$path_to_check' is in your 'PATH'..."
@@ -70,9 +63,6 @@ check_path() {
 ####
 # Remove the existing symlink or hard link to the 'mass-git' script in the
 # '~/.local/bin/' directory.
-#
-# # PARAMETERS:
-#   - $1: path_to_check (Required)
 remove_link() {
     local link="$1"
 
@@ -113,7 +103,7 @@ else
     }
 fi
 
-if check_path "$C_LOCAL_BIN"; then
+if does_path_exist "$C_LOCAL_BIN"; then
     echo "${C_NOTE}Path to '$C_LOCAL_BIN' already exists in your 'PATH'"
 else
     echo "${C_WARN}It appears that '$C_LOCAL_BIN' is not in your 'PATH'"
