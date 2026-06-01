@@ -90,7 +90,7 @@ while [[ -n $1 ]]; do
             exit 2
             ;;
         *)
-            if hash realpath; then
+            if command -v realpath &>/dev/null; then
                 path="$(realpath "$1" 2>/dev/null || echo "BAD MAGIC")"
             else
                 path="$(cd "${1%/*}" || exit; pwd)/${1##*/}"
