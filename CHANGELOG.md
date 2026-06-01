@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - Improved find's handling of maxdepth.
+- Improved robustness of command detection logic.
 
 ## v2.0.4 - 2026-05-23
 
